@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Oswald:wght@200..700&family=Playwrite+HR+Lijeva:wght@100..400&family=Protest+Revolution&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<style>
+ 
+
+  .inp {
+      border-radius: 25px;
+      border: 1px;
+  }
+  .divc {
+      position: relative;
+      left: 80px;
+      top: 90px;
+      
+  }
+  #boody{
+    margin: 0; /* Remove default margins */
+    padding: 0; /* Remove default padding */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    box-sizing: border-box;
+    
+  }
+  @media (max-width: 768px) {
+
+    
+    #boody{
+      position: relative;
+      left: 10px;
+      overflow: hidden;
+      background-size: cover;
+      box-sizing: border-box;
+    }
+    #output{
+      position: relative;
+      left: 10px;
+    }
+    #head{
+      position: relative;
+      left:-15px;
+    }
+    #h1{
+      font-weight: bolder;
+    }
+
+    #h4{
+      
+      position: relative;
+     font-weight: bolder;
+     
+    }
+
+
+
+
+   
+  }
+  
+</style>
+
+<body id="boody" style="background-image: url(./Untitled\ design.png); background-repeat: no-repeat; background-size: cover; display: flex; flex-direction: column; row-gap: 100px; justify-content: center; align-items: center;">
+    
+   <div style="position: relative;"> <div id="head" style="font-family: Playwrite HR Lijeva, cursive;  color: darkred;  margin-top: 10px;"><h1 id="h1">WELLNESSGAUGE</h1></div>
+    <div id="cap" style="font-family: Playwrite HR Lijeva, cursive; font-size: 20px; color: rgb(50, 2, 2); "><h4 id="h4">Your health, your numbers, your choice</h4></div>
+</div>
+
+   <div id="bb"  style="height: 400px; border-radius: 25px; width: 400px;background-color: rgba(41, 22, 14, 0.2)">
+ 
+ 
+    <div class="divc">
+        <label for=""><h6>Age</h6></label>
+        &nbsp;&nbsp; &nbsp;&nbsp;<input class="inp" id="age" type="number">
+    <br><br>
+         <label   for="h"><h6>Height</h6></label>
+         <input  class="inp" id="h" type="number" placeholder="cm">
+    <br><br>
+         <label for="w"><h6>Weight</h6></label>
+         <input  class="inp" id="w" type="number" placeholder="kg">
+         <br><br>
+         <label for="gender"><h6>Gender</h6></label>
+         <input id="male" type="radio" name="gender">
+         <label for="male"><h6>Male</h6></label>
+     
+         <input id="female" type="radio" name="gender">
+         <label for="female"><h6>Female</h6></label>
+    
+
+<br><br>
+     <button onclick="check()" style="height: 40px; width: 80px; background-color: rgb(255, 0, 0); color: aliceblue;  border-radius: 25px; border: 1px;"><h6>CHECK</h6></button>
+
+
+
+    </div>
+    <div></div>
+    <br><br><br><br><br><br><br>
+    <div id="output" style="font-weight: bold; position: relative; left: 40px; font-size: 30px;"></div> 
+   </div>
+
+
+
+ 
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+const check=()=>{
+  
+
+  if (age.value&& h.value&& w.value !="") {
+
+    const ag=age.value
+    const he=h.value
+    const we=w.value
+    console.log(ag,he,we);
+    
+    
+    if (document.getElementById("male").checked || document.getElementById("female").checked) {
+      console.log("he");
+         if (document.getElementById("male").checked ) {
+           m=1
+         }
+         else{
+          m=0
+         }
+     console.log(m);
+
+
+     hec=he/100
+bmi=we/hec**2
+console.log(bmi);
+//  Underweight: BMI < 18.5
+// Normal weight: BMI 18.5 - 24.9
+// Overweight: BMI 25 - 29.9
+// Obesity: BMI ≥ 30
+
+ if (bmi<18.5) {
+  output.innerHTML=`UNDERWEIGHT<button onclick="window.location.href='under.html'" style="height: 30px; width: 65px; border-radius: 25px; background-color: green; color: white; border: 1px;"><h6>GetTips</h6></button> ` 
+  output.style.color="red"
+ 
+ } else if(bmi >= 18.5 && bmi <= 24.9) {
+  output.innerHTML=`NORMALWEIGHT `
+  output.style.color="green"
+  
+ }
+ else if(bmi >= 25 && bmi <= 29.9){
+   output.innerHTML=`OVERWEIGHT <button onclick="window.location.href='over.html'"  style="height: 30px; width: 65px; border-radius: 25px; background-color: green; color: white; border: 1px;"><h6>GetTips</h6></button>  `
+   output.style.color="red"
+  
+ }
+ else if(bmi >= 30) {
+  output.innerHTML=`OBESITY <button onclick="window.location.href='obseity.html'"   style="height: 30px; width: 65px; border-radius: 25px; background-color: green; color: white; border: 1px;"><h6>GetTips</h6></button> `
+  output.style.color="red"
+ 
+ }
+
+
+
+    } else {
+      alert("Please select a gender.");
+    }
+    
+  }
+  else{
+    alert("please fill the fields")
+
+
+    
+  }
+  
+  //console.log(a,h,w,male);
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+  
+
+</script>
+</html>

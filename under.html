@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <title>weightgauge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Oswald:wght@200..700&family=Playwrite+HR+Lijeva:wght@100..400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            height: 200vh; /* Ensures there's enough space to scroll */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        #head {
+            font-family: 'Playwrite HR Lijeva', cursive;
+            color: darkred;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        #cap {
+            font-family: 'Playwrite HR Lijeva', cursive;
+            font-size: 20px;
+            color: rgb(50, 2, 2);
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .rows-container {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .row {
+            opacity: 0; /* Initially hidden */
+            transform: translateY(100px); /* Starts below the viewport */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            margin: 0 auto;
+            padding: 20px;
+            height: 200px;
+            width: 1000px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px; /* Adjust width */
+            text-align: center;
+        }
+
+        .row.visible {
+            opacity: 1; /* Becomes visible */
+            transform: translateY(0); /* Moves to its original position */
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            #head {
+                font-size: 24px;
+                left: 10px;
+            }
+
+            #cap {
+                font-size: 16px;
+            }
+
+            .rows-container {
+                margin-left: 10px;
+            }
+
+            .row {
+                width: 100%;
+                max-width: 90%;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h4 {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #head {
+                font-size: 20px;
+                left: 0;
+            }
+
+            #cap {
+                font-size: 14px;
+            }
+
+            .row {
+                width: 100%;
+                max-width: 95%;
+                padding: 8px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            h4 {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body style="background-image: url(./Untitled\ design.png); background-size: cover;">
+    <div id="head">
+        <h1 id="h1">WELLNESSGAUGE</h1>
+    </div>
+    <div id="cap">
+        <h4 id="h4">Your health, your numbers, your choice</h4>
+    </div>
+    <div class="rows-container">
+        <div style="background-color: paleturquoise;" class="row">
+            <h4>Focus on nutrient-dense foods</h4>
+            Include a variety of whole foods like lean meats, whole grains, healthy fats, dairy products, fruits, and vegetables. Ensure your diet provides adequate calories, vitamins, and minerals.
+        </div>
+        <div style="background-color: lightpink;" class="row">
+            <h4>Eat more frequently</h4>
+            Have multiple small meals throughout the day. Include calorie-dense snacks like nuts, seeds, avocados, cheese, and dried fruits.
+        </div>
+        <div style="background-color: lightgreen;" class="row">
+            <h4>Engage in strength training</h4>
+            Exercises like weight lifting can help build muscle mass, which contributes to healthy weight gain. Focus on exercises that target large muscle groups.
+        </div>
+        <div style="background-color: lightyellow;" class="row">
+            <h4>Drink calorie-rich beverages</h4>
+            Choose smoothies, milkshakes, or other high-calorie drinks in addition to water. Avoid excessive consumption of sugary drinks, which can lead to unhealthy weight gain.
+        </div>
+        <div style="background-color: lightskyblue;" class="row">
+            <h4>Have regular meals</h4>
+            Skipping meals can lead to insufficient calorie intake, preventing you from gaining weight. Make sure to have regular, well-balanced meals every day.
+        </div>
+        <div style="background-color: lightsalmon;" class="row">
+            <h4>Seek medical advice:</h4>
+            If you're struggling to gain weight or maintain a healthy weight, consult a nutritionist or healthcare provider. They can help identify any underlying conditions affecting your weight and create a personalized nutrition plan.
+        </div>
+    </div>
+
+    <script>
+        // Function to check if an element is in the viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return rect.top <= window.innerHeight && rect.bottom >= 0;
+        }
+
+        // Function to handle the scroll event
+        function handleScroll() {
+            const rows = document.querySelectorAll(".row");
+            rows.forEach(row => {
+                if (isInViewport(row)) {
+                    row.classList.add("visible");
+                }
+            });
+        }
+
+        // Attach the scroll event
+        document.addEventListener("scroll", handleScroll);
+
+        // Trigger scroll handler initially in case some rows are already in the viewport
+        handleScroll();
+    </script>
+</body>
+</html>
